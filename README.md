@@ -15,7 +15,7 @@ The architecture follows a three-tier approach, with stateless web servers acces
 - Programming Language: PHP
 - Code Repository: Github
 
-![3-Tier web application architecture with a single Database and an NFS Server as a shared files storage](images/3-Tier-web-app-arch..png)
+![3-Tier web application architecture with a single Database and an NFS Server as a shared files storage](images/3-Tier-web-app-arch.png)
 
 *the image above shows 3 stateless Web Servers sharing a common database and also accessing same files using Network File System as a shared filed storage*
 
