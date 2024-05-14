@@ -15,7 +15,7 @@ The architecture follows a three-tier approach, with stateless web servers acces
 - Programming Language: PHP
 - Code Repository: Github
 
-![3-Tier web application architecture with a single Database and an NFS Server as a shared files storage](images/3-Tier-web-app-arch.png)
+![3-Tier web application architecture with a single Database and an NFS Server as a shared files storage](Images/3-Tier-web-app-arch.png)
 
 *the image above shows 3 stateless Web Servers sharing a common database and also accessing same files using Network File System as a shared filed storage*
 
@@ -27,7 +27,7 @@ In AWS, launch an EC2 instance with Amazon Linux and name it "NFS."
 
 Create and attach three EBS volumes to the NFS server.
 
-![](images/volumess.png)
+![](Images/volumess.png)
 
 ### Step 2 - Create and Mount  Logical Volumes on NFS Server:
 
@@ -39,9 +39,9 @@ sudo gdisk /dev/xvdbg
 sudo gdisk /dev/xvdbh
 ```
 
-![](images/partf.png)
-![](images/partg.png)
-![](images/parth.png)
+![](Images/partf.png)
+![](Images/partg.png)
+![](Images/parth.png)
 
 
 Install lvm2 package using;
@@ -75,7 +75,7 @@ sudo lvcreate -n apps-lv -L 9G webdata-vg
 sudo lvcreate -n logs-lv -L 9G webdata-vg
 sudo lvcreate -n opt-lv  -L 9G webdata-vg
 ```
-![](images/lvcreate.png)
+![](Images/lvcreate.png)
 Use mkfs.xfs to format the logical volumes with xfs filesystem
 
 ```
@@ -120,7 +120,7 @@ sudo mount /dev/webdata-vg/logs-lv /mnt/logs
  df -h
  ```
 
-![](images/confirm-mount.png)
+![](Images/confirm-mount.png)
 
 Use the command  below to view the UUID of the device in other to copy and update the fstab
 
@@ -160,14 +160,14 @@ sudo systemctl start nfs-server.service
 sudo systemctl enable nfs-server.service
 sudo systemctl status nfs-server.service
 ```
-![](images/yum-update.png)
+![](Images/yum-update.png)
 
 _ensure you confirm the status of your nfs server_
 
 
 Extract the subnet cidr for NFS on the EC2, by locating the 'Networking' tab and open the Subnet link.
 
-![](images/subnet.png)
+![](Images/subnet.png)
 
 
 setting up neccessary permissions:
@@ -183,7 +183,7 @@ sudo chmod -R 777 /mnt/opt
 
 sudo systemctl restart nfs-server.service
 ```
-![](images/permissions.png)
+![](Images/permissions.png)
 
 Configure access to NFS for clients within the same subnet
 
@@ -191,7 +191,7 @@ Configure access to NFS for clients within the same subnet
 sudo vi /etc/exports
 ```
 
-![](images/export-config.png)
+![](Images/export-config.png)
 
 *the image above shows the configuration access to NFS for clients within the same subnet*
 
